@@ -3,42 +3,103 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  --happy-bg-color: #DD6101;
+  --happy-outline-color: #b26801;
+
+  --sad-bg-color: #160577;
+  --sad-outline-color: #4324b2;
+
+  --disgusted-bg-color: #7B3C07;
+  --disgusted-outline-color: #B35C2F;
+
+  --angry-bg-color: #92192A;
+  --angry-outline-color: #CE2B3C;
+
+  --fearful-bg-color: #A81F6D;
+  --fearful-outline-color: #D1278A;
+
+  --bad-bg-color: #432362;
+  --bad-outline-color: #522D7A;
+
+  --surprised-bg-color: #1B5036;
+  --surprised-outline-color: #4A7460;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.main {
+  padding: 5em;
+  border-radius: 2em;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  gap: 1rem;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+li {
+  text-decoration: none;
+  border-color: #f9f9f9;
 }
+
 .shadow:hover {
   filter: drop-shadow(0 0 0.5em #61dafbaa);
 }
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.happy {
+  background-color: var(--happy-bg-color); 
+}
+button.happy:hover {
+  border-color: var(--happy-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--happy-bg-color))
+}
+.sad {
+  background-color: var(--sad-bg-color); 
+}
+button.sad:hover {
+  border-color: var(--sad-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--sad-bg-color))
+}
+.disgusted {
+  background-color: var(--disgusted-bg-color); 
+}
+button.disgusted:hover {
+  border-color: var(--disgusted-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--disgusted-bg-color))
+}
+.angry {
+  background-color: var(--angry-bg-color); 
+}
+button.angry:hover {
+  border-color: var(--angry-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--angry-bg-color))
+}
+.fearful {
+  background-color: var(--fearful-bg-color); 
+}
+button.fearful:hover {
+  border-color: var(--fearful-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--fearful-bg-color))
+}
+.bad {
+  background-color: var(--bad-bg-color); 
+}
+button.bad:hover {
+  border-color: var(--bad-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--bad-bg-color))
+}
+.surprised {
+  background-color: var(--surprised-bg-color); 
+}
+button.surprised:hover {
+  border-color: var(--surprised-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--surprised-bg-color))
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.start-over {
+  background-color: #f9f9f9 transparent;
 }
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.start-over:hover {
+  filter: drop-shadow(0 0 0.5em rgb(235, 19, 19));
+  border-color: rgb(178, 46, 46);
 }

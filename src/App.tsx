@@ -1,9 +1,10 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { motion } from "framer-motion";
 
 interface Emotion {
-  text: string
-  subEmotions?: Emotion[] 
+  text: string;
+  subEmotions?: Emotion[];
 }
 
 const EMOTIONS: Emotion[] = [
@@ -12,356 +13,280 @@ const EMOTIONS: Emotion[] = [
     subEmotions: [
       {
         text: "Playful",
-        subEmotions: [
-          { text: "Aroused" },
-          { text: "Cheeky" }
-        ]
+        subEmotions: [{ text: "Aroused" }, { text: "Cheeky" }],
       },
       {
         text: "Content",
-        subEmotions: [
-          { text: "Free" },
-          { text: "Joyful" }
-        ]
+        subEmotions: [{ text: "Free" }, { text: "Joyful" }],
       },
       {
         text: "Interested",
-        subEmotions: [
-          { text: "Curious" },
-          { text: "Inquisitive" }
-        ]
+        subEmotions: [{ text: "Curious" }, { text: "Inquisitive" }],
       },
       {
         text: "Proud",
-        subEmotions: [
-          { text: "Successful" },
-          { text: "Confident" }
-        ]
+        subEmotions: [{ text: "Successful" }, { text: "Confident" }],
       },
       {
         text: "Accepted",
-        subEmotions: [
-          { text: "Respected" },
-          { text: "Valued" }
-        ]
+        subEmotions: [{ text: "Respected" }, { text: "Valued" }],
       },
       {
         text: "Powerful",
-        subEmotions: [
-          { text: "Courageous" },
-          { text: "Creative" }
-        ]
+        subEmotions: [{ text: "Courageous" }, { text: "Creative" }],
       },
       {
         text: "Peaceful",
-        subEmotions: [
-          { text: "Loving" },
-          { text: "Thankful" }
-        ]
+        subEmotions: [{ text: "Loving" }, { text: "Thankful" }],
       },
       {
         text: "Trusting",
-        subEmotions: [
-          { text: "Sensitive" },
-          { text: "Intimate" }
-        ]
+        subEmotions: [{ text: "Sensitive" }, { text: "Intimate" }],
       },
       {
         text: "Optimistic",
-        subEmotions: [
-          { text: "Hopeful" },
-          { text: "Inspired" }
-        ]
-      }
-    ]
+        subEmotions: [{ text: "Hopeful" }, { text: "Inspired" }],
+      },
+    ],
   },
   {
-    text: 'Sad',
+    text: "Sad",
     subEmotions: [
       {
         text: "Lonely",
-        subEmotions: [
-          { text: "Isolated" },
-          { text: "Abandoned" }
-        ]
+        subEmotions: [{ text: "Isolated" }, { text: "Abandoned" }],
       },
       {
         text: "Vulnerable",
-        subEmotions: [
-          { text: "Victimized" },
-          { text: "Fragile" }
-        ]
+        subEmotions: [{ text: "Victimized" }, { text: "Fragile" }],
       },
       {
         text: "Despair",
-        subEmotions: [
-          { text: "Grief" },
-          { text: "Powerless" }
-        ]
+        subEmotions: [{ text: "Grief" }, { text: "Powerless" }],
       },
       {
         text: "Guilty",
-        subEmotions: [
-          { text: "Ashamed" },
-          { text: "Remorseful" }
-        ]
+        subEmotions: [{ text: "Ashamed" }, { text: "Remorseful" }],
       },
       {
         text: "Depressed",
-        subEmotions: [
-          { text: "Empty" },
-          { text: "Inferior" }
-        ]
+        subEmotions: [{ text: "Empty" }, { text: "Inferior" }],
       },
       {
         text: "Hurt",
-        subEmotions: [
-          { text: "Disappointed" },
-          { text: "Embarrassed" }
-        ]
-      }
-    ]
+        subEmotions: [{ text: "Disappointed" }, { text: "Embarrassed" }],
+      },
+    ],
   },
   {
-    text: 'Disgusted',
+    text: "Disgusted",
     subEmotions: [
       {
         text: "Repelled",
-        subEmotions: [
-          { text: "Hesitant" },
-          { text: "Horrified" }
-        ]
+        subEmotions: [{ text: "Hesitant" }, { text: "Horrified" }],
       },
       {
         text: "Awful",
-        subEmotions: [
-          { text: "Detestable" },
-          { text: "Nauseated" }
-        ]
+        subEmotions: [{ text: "Detestable" }, { text: "Nauseated" }],
       },
       {
         text: "Disappointed",
-        subEmotions: [
-          { text: "Revolted" },
-          { text: "Appalled" }
-        ]
+        subEmotions: [{ text: "Revolted" }, { text: "Appalled" }],
       },
       {
         text: "Disapproving",
-        subEmotions: [
-          { text: "Embarrassed" },
-          { text: "Judgemental" }
-        ]
-      }
-    ]
+        subEmotions: [{ text: "Embarrassed" }, { text: "Judgemental" }],
+      },
+    ],
   },
   {
-    text: 'Angry',
+    text: "Angry",
     subEmotions: [
       {
         text: "Critical",
-        subEmotions: [
-          { text: "Dismissive" },
-          { text: "Skeptical" }
-        ]
+        subEmotions: [{ text: "Dismissive" }, { text: "Skeptical" }],
       },
       {
         text: "Distant",
-        subEmotions: [
-          { text: "Withdrawn" },
-          { text: "Numb" }
-        ]
+        subEmotions: [{ text: "Withdrawn" }, { text: "Numb" }],
       },
       {
         text: "Frustrated",
-        subEmotions: [
-          { text: "Infuriated" },
-          { text: "Annoyed" }
-        ]
+        subEmotions: [{ text: "Infuriated" }, { text: "Annoyed" }],
       },
       {
         text: "Aggressive",
-        subEmotions: [
-          { text: "Provoked" },
-          { text: "Hostile" }
-        ]
+        subEmotions: [{ text: "Provoked" }, { text: "Hostile" }],
       },
       {
         text: "Mad",
-        subEmotions: [
-          { text: "Furious" },
-          { text: "Jealous" }
-        ]
+        subEmotions: [{ text: "Furious" }, { text: "Jealous" }],
       },
       {
         text: "Bitter",
-        subEmotions: [
-          { text: "Indignant" },
-          { text: "Violated" }
-        ]
+        subEmotions: [{ text: "Indignant" }, { text: "Violated" }],
       },
       {
         text: "Humiliated",
-        subEmotions: [
-          { text: "Disrespected" },
-          { text: "Ridiculed" }
-        ]
+        subEmotions: [{ text: "Disrespected" }, { text: "Ridiculed" }],
       },
       {
         text: "Let Down",
-        subEmotions: [
-          { text: "Betrayed" },
-          { text: "Resentful" }
-        ]
-      }
-    ]
+        subEmotions: [{ text: "Betrayed" }, { text: "Resentful" }],
+      },
+    ],
   },
   {
-    text: 'Fearful',
+    text: "Fearful",
     subEmotions: [
       {
         text: "Threatened",
-        subEmotions: [
-          { text: "Nervous" },
-          { text: "Exposed" }
-        ]
+        subEmotions: [{ text: "Nervous" }, { text: "Exposed" }],
       },
       {
         text: "Rejected",
-        subEmotions: [
-          { text: "Excluded" },
-          { text: "Persecuted" }
-        ]
+        subEmotions: [{ text: "Excluded" }, { text: "Persecuted" }],
       },
       {
         text: "Weak",
-        subEmotions: [
-          { text: "Worthless" },
-          { text: "Insignificant" }
-        ]
+        subEmotions: [{ text: "Worthless" }, { text: "Insignificant" }],
       },
       {
         text: "Insecure",
-        subEmotions: [
-          { text: "Inadequate" },
-          { text: "Inferior" }
-        ]
+        subEmotions: [{ text: "Inadequate" }, { text: "Inferior" }],
       },
       {
         text: "Anxious",
-        subEmotions: [
-          { text: "Overwhelmed" },
-          { text: "Worried" }
-        ]
+        subEmotions: [{ text: "Overwhelmed" }, { text: "Worried" }],
       },
       {
         text: "Scared",
-        subEmotions: [
-          { text: "Helpless" },
-          { text: "Frightened" }
-        ]
-      }
-    ]
+        subEmotions: [{ text: "Helpless" }, { text: "Frightened" }],
+      },
+    ],
   },
   {
-    text: 'Bad',
+    text: "Bad",
     subEmotions: [
       {
         text: "Bored",
-        subEmotions: [
-          { text: "Indifferent" },
-          { text: "Apathetic" }
-        ]
+        subEmotions: [{ text: "Indifferent" }, { text: "Apathetic" }],
       },
       {
         text: "Busy",
-        subEmotions: [
-          { text: "Pressured" },
-          { text: "Rushed" }
-        ]
+        subEmotions: [{ text: "Pressured" }, { text: "Rushed" }],
       },
       {
         text: "Stressed",
-        subEmotions: [
-          { text: "Overwhelmed" },
-          { text: "Out of Control" }
-        ]
+        subEmotions: [{ text: "Overwhelmed" }, { text: "Out of Control" }],
       },
       {
         text: "Tired",
-        subEmotions: [
-          { text: "Sleepy" },
-          { text: "Unfocused" }
-        ]
-      }
-    ]
+        subEmotions: [{ text: "Sleepy" }, { text: "Unfocused" }],
+      },
+    ],
   },
   {
-    text: 'Surprised',
+    text: "Surprised",
     subEmotions: [
       {
         text: "Startled",
-        subEmotions: [
-          { text: "Shocked" },
-          { text: "Dismayed" }
-        ]
+        subEmotions: [{ text: "Shocked" }, { text: "Dismayed" }],
       },
       {
         text: "Confused",
-        subEmotions: [
-          { text: "Disillusioned" },
-          { text: "Perplexed" }
-        ]
+        subEmotions: [{ text: "Disillusioned" }, { text: "Perplexed" }],
       },
       {
         text: "Amazed",
-        subEmotions: [
-          { text: "Astonished" },
-          { text: "Awe" }
-        ]
+        subEmotions: [{ text: "Astonished" }, { text: "Awe" }],
       },
       {
         text: "Excited",
-        subEmotions: [
-          { text: "Eager" },
-          { text: "Energetic" }
-        ]
-      }
-    ]
-  }
+        subEmotions: [{ text: "Eager" }, { text: "Energetic" }],
+      },
+    ],
+  },
 ];
 
 function App() {
-  const [selectedEmotion, setSelectedEmotion] = useState<Emotion>();
+  const [selectedEmotion, setSelectedEmotion] = useState<Emotion | null>(null);
+  const [rootEmotion, setRootEmotion] = useState<Emotion | null>(null);
 
   // if no emotion selected
   const isInitialState = !selectedEmotion;
-  
+
   // if emotion selected AND there ARE subEmotions
-  const isActiveState = !!selectedEmotion && !!selectedEmotion.subEmotions
+  const isActiveState = !!selectedEmotion && !!selectedEmotion.subEmotions;
 
   // if emotion selected AND there NO subEmotions
   const isEndState = !!selectedEmotion && !selectedEmotion.subEmotions;
 
   const reset = () => {
-    setSelectedEmotion(undefined);
-  }
-  
-  return (
-    <>
-    {(isInitialState || isActiveState) ? 
-      <h1>How are you feeling today?</h1> : 
-      <h1>Are you feeling <span>{selectedEmotion!.text.toUpperCase()}</span>?</h1>
-    }
+    setSelectedEmotion(null);
+    setRootEmotion(null);
+  };
 
-      { isInitialState && EMOTIONS.map((emotion) => <button onClick={() => setSelectedEmotion(emotion)} className='shadow' key={emotion.text}>{emotion.text}</button>)}
-      { isActiveState && selectedEmotion.subEmotions?.map((emotion) => <button onClick={() => setSelectedEmotion(emotion)} className='shadow' key={emotion.text}>{emotion.text}</button>)}
-      { isEndState && <> 
-        <p>{selectedEmotion.text}</p>
-        <button onClick={reset}>Start Over</button>
-      </>}
-    </>
-  )
+  return (
+    <div className={` main ${rootEmotion?.text.toLowerCase()}`}>
+      {isInitialState || isActiveState ? (
+        <motion.h1>How are you feeling today?</motion.h1>
+      ) : (
+        <motion.h1>
+          {/* <span>{selectedEmotion!.text.toUpperCase()}</span>? */}
+          Are you feeling?
+        </motion.h1>
+      )}
+      <ul>
+        {isInitialState &&
+          EMOTIONS.map((emotion) => {
+            return (
+              <li>
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => {
+                    setSelectedEmotion(emotion);
+                    setRootEmotion(emotion);
+                  }}
+                  className={emotion.text.toLowerCase()}
+                  key={emotion.text}
+                >
+                  {emotion.text}
+                </motion.button>
+              </li>
+            );
+          })}
+        {isActiveState &&
+          selectedEmotion.subEmotions?.map((emotion) => {
+            return (
+              <li>
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setSelectedEmotion(emotion)}
+                  className="shadow"
+                  key={emotion.text}
+                >
+                  {emotion.text}
+                </motion.button>
+              </li>
+            );
+          })}
+      </ul>
+
+        {isEndState && (
+          <>
+            <p>{selectedEmotion.text}</p>
+            <button onClick={reset} className="start-over">
+              Start Over
+            </button>
+          </>
+        )}
+    </div>
+  );
 }
 
-export default App
+export default App;
