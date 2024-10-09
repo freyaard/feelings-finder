@@ -211,7 +211,7 @@ const EMOTIONS: Emotion[] = [
 
 function App() {
   const [selectedEmotion, setSelectedEmotion] = useState<Emotion | null>(null);
-  const [rootEmotion, setRootEmotion] = useState<Emotion | null>(null);
+  const [previousEmotions, setPreviousEmotions] = useState<Array<Emotion>>([]);
 
   // if no emotion selected
   const isInitialState = !selectedEmotion;
@@ -222,70 +222,99 @@ function App() {
   // if emotion selected AND there NO subEmotions
   const isEndState = !!selectedEmotion && !selectedEmotion.subEmotions;
 
+const fadeAnimation = {
+  initial: {opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 }
+}
   const reset = () => {
     setSelectedEmotion(null);
-    setRootEmotion(null);
+    setPreviousEmotions([]);
+  };
+
+  const goBack = () => {
+    if (!previousEmotions.length) return;
+    if (previousEmotions.length === 1) {
+      reset();
+      return;
+    }
+
+    setSelectedEmotion(previousEmotions[previousEmotions.length - 2]);
+    setPreviousEmotions((prev) => prev.slice(0, 1));
   };
 
   return (
-    <div className={` main ${rootEmotion?.text.toLowerCase()}`}>
+    <motion.div
+      layout
+      className={`main ${previousEmotions[0]?.text.toLowerCase()}`}
+    >
       {isInitialState || isActiveState ? (
-        <motion.h1>How are you feeling today?</motion.h1>
+        <motion.h1 layout="position">How are you feeling today?</motion.h1>
       ) : (
-        <motion.h1>
-          {/* <span>{selectedEmotion!.text.toUpperCase()}</span>? */}
-          Are you feeling?
-        </motion.h1>
+        <h1>Are you feeling?</h1>
       )}
-      <ul>
-        {isInitialState &&
-          EMOTIONS.map((emotion) => {
-            return (
-              <li>
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onClick={() => {
-                    setSelectedEmotion(emotion);
-                    setRootEmotion(emotion);
-                  }}
-                  className={emotion.text.toLowerCase()}
-                  key={emotion.text}
-                >
-                  {emotion.text}
-                </motion.button>
-              </li>
-            );
-          })}
-        {isActiveState &&
-          selectedEmotion.subEmotions?.map((emotion) => {
-            return (
-              <li>
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onClick={() => setSelectedEmotion(emotion)}
-                  className="shadow"
-                  key={emotion.text}
-                >
-                  {emotion.text}
-                </motion.button>
-              </li>
-            );
-          })}
-      </ul>
 
-        {isEndState && (
-          <>
-            <p>{selectedEmotion.text}</p>
-            <button onClick={reset} className="start-over">
-              Start Over
-            </button>
-          </>
-        )}
-    </div>
+      {!isEndState && (
+        <ul>
+          {isInitialState &&
+            EMOTIONS.map((emotion) => {
+              return (
+                <motion.li>
+                  <motion.button
+                    {...fadeAnimation}
+                    onClick={() => {
+                      setSelectedEmotion(emotion);
+                      setPreviousEmotions([...previousEmotions, emotion]);
+                    }}
+                    className={emotion.text.toLowerCase()}
+                    key={emotion.text}
+                  >
+                    {emotion.text}
+                  </motion.button>
+                </motion.li>
+              );
+            })}
+
+          {isActiveState &&
+            selectedEmotion.subEmotions?.map((emotion) => {
+              return (
+                <li>
+                  <motion.button
+                    {...fadeAnimation}
+                    onClick={() => {
+                      setSelectedEmotion(emotion);
+                      setPreviousEmotions([...previousEmotions, emotion]);
+                    }}
+                    className="shadow"
+                    key={emotion.text}
+                  >
+                    {emotion.text}
+                  </motion.button>
+                </li>
+              );
+            })}
+        </ul>
+      )}
+
+      {isActiveState && (
+        <button onClick={goBack} className="back-button">
+          Back
+        </button>
+      )}
+
+      {isEndState && (
+        <div className="end-state">
+          <motion.p
+            {...fadeAnimation}
+          >
+            {selectedEmotion.text.toUpperCase()}
+          </motion.p>
+          <button onClick={reset} className="back-button">
+            Start Over
+          </button>
+        </div>
+      )}
+    </motion.div>
   );
 }
 

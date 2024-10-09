@@ -4,30 +4,34 @@
   padding: 2rem;
   text-align: center;
 
-  --happy-bg-color: #DD6101;
+  --happy-bg-color: #dd6101;
   --happy-outline-color: #b26801;
 
   --sad-bg-color: #160577;
   --sad-outline-color: #4324b2;
 
-  --disgusted-bg-color: #7B3C07;
-  --disgusted-outline-color: #B35C2F;
+  --disgusted-bg-color: #7b3c07;
+  --disgusted-outline-color: #b35c2f;
 
-  --angry-bg-color: #92192A;
-  --angry-outline-color: #CE2B3C;
+  --angry-bg-color: #92192a;
+  --angry-outline-color: #ce2b3c;
 
-  --fearful-bg-color: #A81F6D;
-  --fearful-outline-color: #D1278A;
+  --fearful-bg-color: #a81f6d;
+  --fearful-outline-color: #d1278a;
 
   --bad-bg-color: #432362;
-  --bad-outline-color: #522D7A;
+  --bad-outline-color: #522d7a;
 
-  --surprised-bg-color: #1B5036;
-  --surprised-outline-color: #4A7460;
+  --surprised-bg-color: #1b5036;
+  --surprised-outline-color: #4a7460;
 }
-
+h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 .main {
   padding: 5em;
+  padding-bottom: 3em;
   border-radius: 2em;
 }
 
@@ -36,7 +40,10 @@ ul {
   list-style-type: none;
   justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
+  padding: 2em 0 2em 0;
 }
+
 li {
   text-decoration: none;
   border-color: #f9f9f9;
@@ -47,59 +54,73 @@ li {
 }
 
 .happy {
-  background-color: var(--happy-bg-color); 
+  background-color: var(--happy-bg-color);
 }
 button.happy:hover {
   border-color: var(--happy-outline-color);
-  filter: drop-shadow(0 0 0.5em var(--happy-bg-color))
+  filter: drop-shadow(0 0 0.5em var(--happy-bg-color));
 }
 .sad {
-  background-color: var(--sad-bg-color); 
+  background-color: var(--sad-bg-color);
 }
 button.sad:hover {
   border-color: var(--sad-outline-color);
-  filter: drop-shadow(0 0 0.5em var(--sad-bg-color))
+  filter: drop-shadow(0 0 0.5em var(--sad-bg-color));
 }
 .disgusted {
-  background-color: var(--disgusted-bg-color); 
+  background-color: var(--disgusted-bg-color);
 }
 button.disgusted:hover {
   border-color: var(--disgusted-outline-color);
-  filter: drop-shadow(0 0 0.5em var(--disgusted-bg-color))
+  filter: drop-shadow(0 0 0.5em var(--disgusted-bg-color));
 }
 .angry {
-  background-color: var(--angry-bg-color); 
+  background-color: var(--angry-bg-color);
 }
 button.angry:hover {
   border-color: var(--angry-outline-color);
-  filter: drop-shadow(0 0 0.5em var(--angry-bg-color))
+  filter: drop-shadow(0 0 0.5em var(--angry-bg-color));
 }
 .fearful {
-  background-color: var(--fearful-bg-color); 
+  background-color: var(--fearful-bg-color);
 }
 button.fearful:hover {
   border-color: var(--fearful-outline-color);
-  filter: drop-shadow(0 0 0.5em var(--fearful-bg-color))
+  filter: drop-shadow(0 0 0.5em var(--fearful-bg-color));
 }
 .bad {
-  background-color: var(--bad-bg-color); 
+  background-color: var(--bad-bg-color);
 }
 button.bad:hover {
   border-color: var(--bad-outline-color);
-  filter: drop-shadow(0 0 0.5em var(--bad-bg-color))
+  filter: drop-shadow(0 0 0.5em var(--bad-bg-color));
 }
 .surprised {
-  background-color: var(--surprised-bg-color); 
+  background-color: var(--surprised-bg-color);
 }
 button.surprised:hover {
   border-color: var(--surprised-outline-color);
-  filter: drop-shadow(0 0 0.5em var(--surprised-bg-color))
+  filter: drop-shadow(0 0 0.5em var(--surprised-bg-color));
 }
 
-.start-over {
-  background-color: #f9f9f9 transparent;
+.end-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.start-over:hover {
-  filter: drop-shadow(0 0 0.5em rgb(235, 19, 19));
-  border-color: rgb(178, 46, 46);
+
+.end-state p {
+  background-color: #242424;
+  width: 100%;
+  padding: 1em;
+  font-size: 2em;
+  border-radius: 0.5em;
+}
+
+.back-button:hover {
+  border-color: #242424;
+}
+
+.back-button {
+  background-color: transparent;
 }
