@@ -123,3 +123,10 @@ button.surprised:hover {
 .back-button {
   background-color: transparent;
 }
+
+@media (pointer:none), (pointer:coarse) {
+  button {
+    border: none;
+    filter: none;
+  }
+}
