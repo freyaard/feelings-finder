@@ -24,6 +24,21 @@
 
   --surprised-bg-color: #1b5036;
   --surprised-outline-color: #4a7460;
+
+  --peaceful-bg-color: #46969f;
+  --peaceful-outline-color: #74b0b7;
+
+  --powerful-bg-color: #f8af1b;
+  --powerful-outline-color: #f9c354;
+
+  --joyful-bg-color: #f48c45;
+  --joyful-outline-color: #f6a974;
+
+  --scared-bg-color: #bc88b2;
+  --scared-outline-color: #cda6c5;
+
+  --mad-bg-color: #db615e;
+  --mad-outline-color: #e48986;
 }
 h1 {
   margin-top: 0;
@@ -52,6 +67,7 @@ li {
   filter: drop-shadow(0 0 0.5em #61dafbaa);
 }
 
+/* Roberts colours */
 .happy {
   background-color: var(--happy-bg-color);
 }
@@ -100,6 +116,43 @@ button.bad:hover {
 button.surprised:hover {
   border-color: var(--surprised-outline-color);
   filter: drop-shadow(0 0 0.5em var(--surprised-bg-color));
+}
+
+/* Wilcox colours */
+.peaceful {
+  background-color: var(--peaceful-bg-color);
+}
+button.peaceful:hover {
+  border-color: var(--peaceful-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--peaceful-bg-color));
+}
+.powerful {
+  background-color: var(--powerful-bg-color);
+}
+button.powerful:hover {
+  border-color: var(--powerful-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--powerful-bg-color));
+}
+.joyful {
+  background-color: var(--joyful-bg-color);
+}
+button.joyful:hover {
+  border-color: var(--joyful-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--joyful-bg-color));
+}
+.scared {
+  background-color: var(--scared-bg-color);
+}
+button.scared:hover {
+  border-color: var(--scared-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--scared-bg-color));
+}
+.mad {
+  background-color: var(--mad-bg-color);
+}
+button.mad:hover {
+  border-color: var(--mad-outline-color);
+  filter: drop-shadow(0 0 0.5em var(--mad-bg-color));
 }
 
 .end-state {
