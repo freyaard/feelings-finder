@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import "./App.css";
 import SelectWheelButton from "./components/SelectWheelButton";
+import useAppState from "./hooks/useAppState";
 
-interface Emotion {
+export interface Emotion {
   text: string;
   subEmotions?: Emotion[];
 }
@@ -360,18 +361,9 @@ function App() {
   const emotions =
     wheelVersion === "roberts" ? ROBERTS_EMOTIONS : WILCOX_EMOTIONS;
 
-  // if no emotion selected
-  const isInitialState = !selectedEmotion;
+  const appState = useAppState(selectedEmotion);
 
-  // if emotion selected AND there NO subEmotions OR there is ONLY ONE subEmotion
-  const isEndState =
-    !!selectedEmotion &&
-    (!selectedEmotion.subEmotions || selectedEmotion.subEmotions.length === 1);
-
-  // if emotion selected AND there ARE subEmotions
-  const isActiveState =
-    !!selectedEmotion && !!selectedEmotion.subEmotions && !isEndState;
-
+  // Removes the need to choose an emotion when there's only a single option. For Wilcox wheel.
   if (selectedEmotion?.subEmotions?.length === 1) {
     setSelectedEmotion(selectedEmotion.subEmotions[0]);
   }
@@ -394,7 +386,7 @@ function App() {
 
   return (
     <>
-      {isInitialState && (
+      {appState === "initial" && (
         <div style={{ display: "flex" }}>
           <SelectWheelButton
             wheelVersion={wheelVersion}
@@ -406,15 +398,15 @@ function App() {
         layout
         className={`main ${previousEmotions[0]?.text.toLowerCase()}`}
       >
-        {isInitialState || isActiveState ? (
+        {appState === "initial" || appState === "active" ? (
           <motion.h1 layout="position">How are you feeling today?</motion.h1>
         ) : (
           <h1>Are you feeling?</h1>
         )}
 
-        {!isEndState && (
+        {appState !== "end" && (
           <ul>
-            {isInitialState &&
+            {appState === "initial" &&
               emotions.map((emotion) => {
                 return (
                   <li>
@@ -432,8 +424,8 @@ function App() {
                 );
               })}
 
-            {isActiveState &&
-              selectedEmotion.subEmotions?.map((emotion) => {
+            {appState === "active" &&
+              selectedEmotion!.subEmotions?.map((emotion) => {
                 return (
                   <motion.li layout>
                     <button
@@ -452,20 +444,20 @@ function App() {
           </ul>
         )}
 
-        {isActiveState && (
+        {appState === "active" && (
           <button onClick={goBack} className="back-button">
             Back
           </button>
         )}
 
-        {isEndState && (
+        {appState === "end" && (
           <div className="end-state">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              {selectedEmotion.text.toUpperCase()}
+              {selectedEmotion!.text.toUpperCase()}
             </motion.p>
             <button onClick={reset} className="back-button">
               Start Over
