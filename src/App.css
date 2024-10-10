@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.5em;
   text-align: center;
 
   --happy-bg-color: #dd6101;
@@ -30,8 +30,7 @@ h1 {
   margin-bottom: 0;
 }
 .main {
-  padding: 5em;
-  padding-bottom: 3em;
+  padding: 3em;
   border-radius: 2em;
 }
 
@@ -111,9 +110,9 @@ button.surprised:hover {
 
 .end-state p {
   background-color: #242424;
-  width: 100%;
+  
   padding: 1em;
-  font-size: 2em;
+  font-size: 1.7em;
   border-radius: 0.5em;
 }
 

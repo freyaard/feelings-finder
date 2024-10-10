@@ -1,6 +1,6 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import "./App.css";
-import { motion } from "framer-motion";
 
 interface Emotion {
   text: string;
@@ -222,11 +222,12 @@ function App() {
   // if emotion selected AND there NO subEmotions
   const isEndState = !!selectedEmotion && !selectedEmotion.subEmotions;
 
-const fadeAnimation = {
-  initial: {opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 }
-}
+  const fadeAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
+
   const reset = () => {
     setSelectedEmotion(null);
     setPreviousEmotions([]);
@@ -304,9 +305,7 @@ const fadeAnimation = {
 
       {isEndState && (
         <div className="end-state">
-          <motion.p
-            {...fadeAnimation}
-          >
+          <motion.p {...fadeAnimation}>
             {selectedEmotion.text.toUpperCase()}
           </motion.p>
           <button onClick={reset} className="back-button">
