@@ -376,12 +376,6 @@ function App() {
     setSelectedEmotion(selectedEmotion.subEmotions[0]);
   }
 
-  const fadeAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-  };
-
   const reset = () => {
     setSelectedEmotion(null);
     setPreviousEmotions([]);
@@ -401,12 +395,12 @@ function App() {
   return (
     <>
       {isInitialState && (
-        <motion.div layout style={{ display: "flex" }}>
+        <div style={{ display: "flex" }}>
           <SelectWheelButton
             wheelVersion={wheelVersion}
             setWheelVersion={setWheelVersion}
           />
-        </motion.div>
+        </div>
       )}
       <motion.div
         layout
@@ -423,9 +417,8 @@ function App() {
             {isInitialState &&
               emotions.map((emotion) => {
                 return (
-                  <motion.li>
-                    <motion.button
-                      {...fadeAnimation}
+                  <li>
+                    <button
                       onClick={() => {
                         setSelectedEmotion(emotion);
                         setPreviousEmotions([...previousEmotions, emotion]);
@@ -434,17 +427,16 @@ function App() {
                       key={emotion.text}
                     >
                       {emotion.text}
-                    </motion.button>
-                  </motion.li>
+                    </button>
+                  </li>
                 );
               })}
 
             {isActiveState &&
               selectedEmotion.subEmotions?.map((emotion) => {
                 return (
-                  <li>
-                    <motion.button
-                      {...fadeAnimation}
+                  <motion.li layout>
+                    <button
                       onClick={() => {
                         setSelectedEmotion(emotion);
                         setPreviousEmotions([...previousEmotions, emotion]);
@@ -453,8 +445,8 @@ function App() {
                       key={emotion.text}
                     >
                       {emotion.text}
-                    </motion.button>
-                  </li>
+                    </button>
+                  </motion.li>
                 );
               })}
           </ul>
@@ -468,7 +460,11 @@ function App() {
 
         {isEndState && (
           <div className="end-state">
-            <motion.p {...fadeAnimation}>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
               {selectedEmotion.text.toUpperCase()}
             </motion.p>
             <button onClick={reset} className="back-button">
