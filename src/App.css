@@ -125,7 +125,7 @@ button.surprised:hover {
 }
 
 /* iOS, Android Firefox */
-@media only screen and (hover: none) and (pointer: coarse){
+@media (hover: none) and (pointer: coarse){
   button {
     border: none;
     filter: none;
@@ -133,7 +133,7 @@ button.surprised:hover {
 }
 
 /* Android Chromium */
-@media only screen and (hover: hover) and (pointer: coarse){
+@media (hover: hover) and (pointer: coarse){
   button {
     border: none;
     filter: none;
