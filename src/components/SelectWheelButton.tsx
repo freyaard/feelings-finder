@@ -1,5 +1,5 @@
 import { SetStateAction } from "react";
-import { WheelVersion } from "../App";
+import { WheelVersion } from "../types";
 
 interface SelectWheelButtonProps {
   wheelVersion: WheelVersion;
