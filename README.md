@@ -4,7 +4,7 @@ How are you feeling today? Feelings Finder allows you to pinpoint how are you ar
 
 Extended version based on the Feelings Wheel by [Geoffrey Roberts](http://imgur.com/tCWChf6)
 
-Original version based on the Feelings Wheel by [Gloria Wilcox](https://www.pspnet.ca/assets/the-gottman-institute-the-feeling-wheel-v2.pdf)
+Original version based on the Feelings Wheel by [Dr. Gloria Wilcox](https://www.pspnet.ca/assets/the-gottman-institute-the-feeling-wheel-v2.pdf)
 
 ## Install
 
